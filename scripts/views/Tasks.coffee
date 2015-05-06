@@ -8,15 +8,13 @@ module.exports = class TasksView extends Parse.View
   tagName: 'ul'
   className: 'tasks'
 
-  views: []
-
   initialize: =>
-    @collection.each (task) =>
-      @views.push new TaskView model: task
-
+    @collection.on 'add remove', @render
 
   render: =>
-    @views.forEach (view) =>
+    @$el.empty()
+    @collection.each (task) =>
+      view = new TaskView model: task
       @$el.append view.render().el
-    @$el.append new NewTaskView().render().el
+    @$el.append new NewTaskView(collection: @collection).render().el
     return @

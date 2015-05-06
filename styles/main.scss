@@ -3,24 +3,28 @@ h1 {
   color: #999999;
 }
 
-.task .completed {
-  text-decoration: line-through;
-}
+.tasks {
+  list-style: none;
 
-.task {
-  .edit {
-    display: none;
+  .task .completed {
+    text-decoration: line-through;
   }
-  .description {
-    display: inline;
-  }
-}
 
-.task.editing {
-  .edit {
-    display: inline;
+  .task {
+    .edit {
+      display: none;
+    }
+    .description {
+      display: inline;
+    }
   }
-  .description {
-    display: none;
+
+  .task.editing {
+    .edit {
+      display: inline;
+    }
+    .description {
+      display: none;
+    }
   }
 }
