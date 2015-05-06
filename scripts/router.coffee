@@ -12,12 +12,12 @@ module.exports = class Router extends Parse.Router
     "": "tasks"
     "404": "not_found"
 
-  not_found: => new TemplateView(el: '#app', template: require('./templates/404')).render()
+  not_found: => $('#app').html new TemplateView(template: require('./templates/404')).render().el
 
   tasks: =>
 
     tasks = new Tasks
     tasks.fetch success: (tasks) ->
 
-      tasksView = new TasksView collection: tasks, el: '#app'
-      tasksView.render()
+      tasksView = new TasksView collection: tasks
+      $('#app').html tasksView.render().el
