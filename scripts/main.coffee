@@ -2,9 +2,6 @@ Parse = require('parse').Parse
 $ = window.jQuery
 Parse.$ = $
 
-#monkey-patch missing toJSON method
-# Parse.Object.prototype.toJSON = ()-> @attributes
-
 window.Parse = Parse #TODO remove
 
 Router = require './router'
@@ -15,4 +12,4 @@ $(document).ready ->
 
   router = new Router
 
-  router.navigate('404', {trigger: true, replace: false}) unless Parse.history.start({pushState: false})
+  Parse.history.start({pushState: false})

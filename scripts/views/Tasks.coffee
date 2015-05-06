@@ -1,6 +1,7 @@
 Parse = require('parse').Parse
 
 TaskView = require './Task'
+NewTaskView = require './NewTask'
 
 module.exports = class TasksView extends Parse.View
 
@@ -17,4 +18,5 @@ module.exports = class TasksView extends Parse.View
   render: =>
     @views.forEach (view) =>
       @$el.append view.render().el
+    @$el.append new NewTaskView().render().el
     return @

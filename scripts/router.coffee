@@ -11,8 +11,11 @@ module.exports = class Router extends Parse.Router
   routes:
     "": "tasks"
     "404": "not_found"
+    ":request*": "not_found"
 
-  not_found: => @renderTemplate require './templates/404'
+  not_found: (request) =>
+    console.log request
+    @renderTemplate require('./templates/404'), {request: request}
 
   tasks: =>
 
@@ -24,5 +27,5 @@ module.exports = class Router extends Parse.Router
 
 
   # Helper method for rendering basic templates
-  renderTemplate: (template) =>
-    $('#app').html new TemplateView(template: template).render().el
+  renderTemplate: (template, data) =>
+    $('#app').html new TemplateView(template: template, data: data).render().el

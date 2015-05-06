@@ -2,3 +2,25 @@
 h1 {
   color: #999999;
 }
+
+.task.completed {
+  color: red;
+}
+
+.task {
+  .edit {
+    display: none;
+  }
+  .description {
+    display: block;
+  }
+}
+
+.task.editing {
+  .edit {
+    display: block;
+  }
+  .description {
+    display: none;
+  }
+}
