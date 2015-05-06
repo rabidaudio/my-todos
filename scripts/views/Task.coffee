@@ -13,26 +13,19 @@ module.exports = class TaskView extends TemplateView
 
   template: require '../templates/Task'
 
-  events: {
+  events: 
     'click .checkbox': 'toggleCompleted',
     'dblclick .description': 'changeDescription',
     'keypress .edit': 'updateOnEnter',
     'keydown .edit': 'revertOnEscape',
     'blur .edit': 'close'
-  }
-
-  render: =>
-    super
-    @$el.find('.checkbox').prop 'checked', @model?.get 'completed'
-    return @
 
   toggleCompleted: => @model.toggle()
 
-  changeDescription: =>
-    @$el.addClass 'editing'
+  changeDescription: => @$el.addClass 'editing'
 
   close: =>
-    @model.set 'description', @$el.find('.edit').val()
+    @model.updateDescription @$el.find('.edit').val()
     @$el.removeClass 'editing'
 
   updateOnEnter: (e)=>

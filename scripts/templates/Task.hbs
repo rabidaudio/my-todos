@@ -1,5 +1,5 @@
 <div {{#if completed}}class="completed"{{/if}}>
-  <input class="checkbox" type="checkbox" name="completed"></input>
+  <input class="checkbox" type="checkbox" name="completed" {{#if completed}}checked{{/if}}></input>
   <span class="description">{{ description }}</span>
   <input type="text" class="edit" value="{{ description }}"></input>
 </div>
