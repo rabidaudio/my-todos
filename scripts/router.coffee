@@ -14,13 +14,10 @@ module.exports = class Router extends Parse.Router
 
   not_found: => new TemplateView(el: '#app', template: require('./templates/404')).render()
 
-  home: =>
-    console.log "yay!"
-
   tasks: =>
 
     tasks = new Tasks
     tasks.fetch success: (tasks) ->
 
-      tasksView = new TasksView collection: tasks, el: $('<ul class="tasks"></ul>').appendTo '#app'
+      tasksView = new TasksView collection: tasks, el: '#app'
       tasksView.render()
