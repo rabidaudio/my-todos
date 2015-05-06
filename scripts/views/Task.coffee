@@ -4,4 +4,4 @@ TemplateView = require './Template'
 
 module.exports = class TaskView extends TemplateView
 
-  # template: require '../templates/Task'
+  template: require '../templates/Task'

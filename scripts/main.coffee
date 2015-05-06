@@ -2,7 +2,10 @@ Parse = require('parse').Parse
 $ = window.jQuery
 Parse.$ = $
 
-window.Parse = Parse
+#monkey-patch missing toJSON method
+# Parse.Object.prototype.toJSON = ()-> @attributes
+
+window.Parse = Parse #TODO remove
 
 Router = require './router'
 

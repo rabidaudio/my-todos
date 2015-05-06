@@ -11,15 +11,14 @@ Parse = require('parse').Parse
 module.exports = class TemplateView extends Parse.View
 
   initialize: (opts) =>
-    @listenTo @model, 'change', @render if @model
-    @template = opts.template
+    @model.on('change', @render) if @model
+    @template = @template || opts.template
     @data = opts.data
-    @render()
 
   render: =>
     # Backbone LocalStorage bug - https://github.com/tastejs/todomvc/issues/469
     # return if @model?.changed.id?
-
+    console.log @
+    console.log @template(@model.toJSON())
     @$el.html @template @model?.toJSON() or @data
-    console.log 'rendered!'
     return @
