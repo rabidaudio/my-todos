@@ -18,7 +18,8 @@ module.exports = class TaskView extends TemplateView
     'dblclick .description': 'changeDescription',
     'keypress .edit': 'updateOnEnter',
     'keydown .edit': 'revertOnEscape',
-    'blur .edit': 'close'
+    'blur .edit': 'close',
+    'click .delete': 'trash'
 
   toggleCompleted: => @model.toggle()
 
@@ -35,3 +36,5 @@ module.exports = class TaskView extends TemplateView
     return unless e.which is ESC_KEY
     @$el.removeClass 'editing'
     @$el.find('.edit').val @model.get 'description'
+
+  trash: => @model.destroy()
