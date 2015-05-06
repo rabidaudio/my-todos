@@ -4,10 +4,10 @@ TaskView = require './Task'
 
 module.exports = class TasksView extends Parse.View
 
-  views: []
-
   tagName: 'ul'
   className: 'tasks'
+
+  views: []
 
   initialize: =>
     @collection.each (task) =>

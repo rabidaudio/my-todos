@@ -6,12 +6,11 @@ Parse = require('parse').Parse
   to place it in. Data can be a simple Object @data or a
   Backbone.Model @model
 
-  new TemplateView {el: '#app', template: require('./templates/MyTemplate'), data: {}}
+  $('whatever').html new TemplateView {template: require('./templates/MyTemplate'), data: {}}
 ###
 module.exports = class TemplateView extends Parse.View
 
   tagName: 'div'
-
 
   initialize: (opts) =>
     @model.on('change', @render) if @model
