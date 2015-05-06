@@ -141,4 +141,4 @@ gulp.task('serve', function(cb){
 
 gulp.task('build', resources);
 
-gulp.task('default', ['build', 'watch', 'serve']);
+gulp.task('default', ['clean:all', 'build', 'watch', 'serve']);
