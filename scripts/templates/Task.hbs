@@ -1,4 +1,4 @@
-<div>
+<div {{#if completed}}class="completed"{{/if}}>
   <input class="checkbox" type="checkbox" name="completed"></input>
   <span class="description">{{ description }}</span>
   <input type="text" class="edit" value="{{ description }}"></input>

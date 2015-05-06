@@ -3,8 +3,8 @@ h1 {
   color: #999999;
 }
 
-.task.completed {
-  color: red;
+.task .completed {
+  text-decoration: line-through;
 }
 
 .task {
@@ -12,13 +12,13 @@ h1 {
     display: none;
   }
   .description {
-    display: block;
+    display: inline;
   }
 }
 
 .task.editing {
   .edit {
-    display: block;
+    display: inline;
   }
   .description {
     display: none;

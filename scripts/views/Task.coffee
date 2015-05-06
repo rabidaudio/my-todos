@@ -11,8 +11,6 @@ module.exports = class TaskView extends TemplateView
 
   className: 'task'
 
-  # editing: false
-
   template: require '../templates/Task'
 
   events: {
@@ -32,8 +30,6 @@ module.exports = class TaskView extends TemplateView
 
   changeDescription: =>
     @$el.addClass 'editing'
-
-    # @editing = not @editing
 
   close: =>
     @model.set 'description', @$el.find('.edit').val()
