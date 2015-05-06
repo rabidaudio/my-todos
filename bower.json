@@ -1,0 +1,17 @@
+{
+  "name": "webapp",
+  "version": "0.0.0",
+  "homepage": "https://github.com/rabidaudio/my-todos",
+  "license": "GPL",
+  "author": "Charles Julian Knight, charles@rabidaudio.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3"
+  }
+}
