@@ -19,11 +19,11 @@ module.exports = class NewTaskView extends TemplateView
     @tasks = opts.tasks
     @parentList = opts.parentList
 
-  addOnEnter: (e)=>
+  addOnEnter: (e) =>
     if e.which is ENTER_KEY
       task = new Task
         description: @$el.find('.edit').val(),
         completed: false
         parentList: @parentList
-      task.save()
-      @tasks.add task
+      task.save null, success: =>
+        @tasks.add task

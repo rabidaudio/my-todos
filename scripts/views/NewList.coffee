@@ -26,8 +26,7 @@ module.exports = class NewListView extends TemplateView
         name: @$el.find('.name').val(),
         notes: @$el.find('.notes').val(),
         owner: Parse.User.current()
-      # console.log list
       list.save null, success: =>
         @lists.add list
-        @$el.find('.name').val('')
-        @$el.find('.notes').val('')
+        @$el.find('.name').val ''
+        @$el.find('.notes').val ''

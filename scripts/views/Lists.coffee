@@ -27,6 +27,5 @@ module.exports = class ListsView extends Parse.View
     q.equalTo 'parentList', list
     q.find success: (results) =>
       listView = new ListView model: list, tasks: new Tasks(results)
-      console.log ['adding', listView]
       @$el.append listView.render().el    
     
