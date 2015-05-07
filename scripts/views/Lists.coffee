@@ -15,7 +15,7 @@ module.exports = class ListsView extends Parse.View
 
   render: =>
     @$el.empty()
-    @collection.each (list) =>
+    @collection.sortBy((l)-> l.get 'priority').forEach (list) =>
       @buildListView list
     return @
 
