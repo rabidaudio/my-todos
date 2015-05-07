@@ -12,7 +12,8 @@ module.exports = class TasksView extends Parse.View
 
   render: =>
     @$el.empty()
-    @collection.each (task) =>
+    window.c = @collection
+    @collection.sortBy((t)-> t.get 'priority' ).forEach (task) =>
       view = new TaskView model: task
       @$el.append view.render().el
     return @

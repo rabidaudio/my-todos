@@ -5,6 +5,9 @@ NewTaskView = require './NewTask'
 TemplateView = require './Template'
 TasksView = require './Tasks'
 
+ENTER_KEY = 13
+ESC_KEY = 27
+
 # Takes in both a @model (List) and a collection of Tasks (@tasks)
 module.exports = class ListView extends TemplateView
 

@@ -25,5 +25,6 @@ module.exports = class NewTaskView extends TemplateView
         description: @$el.find('.edit').val(),
         completed: false
         parentList: @parentList
+        priority: @tasks.length
       task.save null, success: =>
         @tasks.add task
