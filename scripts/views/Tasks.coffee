@@ -1,7 +1,6 @@
 Parse = require('parse').Parse
 
 TaskView = require './Task'
-NewTaskView = require './NewTask'
 
 module.exports = class TasksView extends Parse.View
 

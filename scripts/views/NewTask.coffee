@@ -1,6 +1,5 @@
 Parse = require('parse').Parse
 
-TaskView = require './Task'
 TemplateView = require './Template'
 
 Task = require '../models/Task'
