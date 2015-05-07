@@ -2,8 +2,10 @@ Parse = require('parse').Parse
 
 TemplateView = require './views/Template'
 TasksView = require './views/Tasks'
+ListView = require './views/List'
 
 Tasks = require './collections/Tasks'
+Lists = require './collections/Lists'
 
 
 module.exports = class Router extends Parse.Router
@@ -18,12 +20,12 @@ module.exports = class Router extends Parse.Router
     @renderTemplate require('./templates/404'), {request: request}
 
   tasks: =>
-
-    tasks = new Tasks
-    tasks.fetch success: (tasks) ->
-
-      tasksView = new TasksView collection: tasks
-      $('#app').html tasksView.render().el
+    lists = new Lists
+    lists.fetch success: ->
+      lists.each (list) ->
+        listView = new ListView model: list
+        # console.log listView
+        $('#app').append listView.render().el
 
 
   # Helper method for rendering basic templates

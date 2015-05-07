@@ -14,12 +14,12 @@ module.exports = class TaskView extends TemplateView
   template: require '../templates/Task'
 
   events: 
-    'click .checkbox': 'toggleCompleted',
-    'dblclick .description': 'changeDescription',
-    'keypress .edit': 'updateOnEnter',
-    'keydown .edit': 'revertOnEscape',
-    'blur .edit': 'close',
-    'click .delete': 'trash'
+    'click .checkbox'       : 'toggleCompleted',
+    'dblclick .description' : 'changeDescription',
+    'keypress .edit'        : 'updateOnEnter',
+    'keydown .edit'         : 'revertOnEscape',
+    'blur .edit'            : 'close',
+    'click .delete'         : 'trash'
 
   toggleCompleted: => @model.toggle()
 
@@ -33,8 +33,8 @@ module.exports = class TaskView extends TemplateView
     @close() if e.which is ENTER_KEY
 
   revertOnEscape: (e)=>
-    return unless e.which is ESC_KEY
-    @$el.removeClass 'editing'
-    @$el.find('.edit').val @model.get 'description'
+    if e.which is ESC_KEY
+      @$el.removeClass 'editing'
+      @$el.find('.edit').val @model.get 'description'
 
   trash: => @model.destroy()
