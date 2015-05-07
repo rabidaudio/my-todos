@@ -1,22 +1,30 @@
 Parse = require('parse').Parse
 
 TaskView = require './Task'
+TemplateView = require './Template'
 
 Task = require '../models/Task'
 
 ENTER_KEY = 13
 
-module.exports = class NewTaskView extends TaskView
+module.exports = class NewTaskView extends TemplateView
 
   template: require '../templates/NewTask'
-
   className: 'new-task'
 
   events:
     'keypress .edit': 'addOnEnter'
 
+  initialize: (opts) =>
+    super
+    @tasks = opts.tasks
+    @parentList = opts.parentList
+
   addOnEnter: (e)=>
-    return unless e.which is ENTER_KEY
-    task = new Task description: @$el.find('.edit').val(), completed: false
-    task.save()
-    @collection.add task
+    if e.which is ENTER_KEY
+      task = new Task
+        description: @$el.find('.edit').val(),
+        completed: false
+        parentList: @parentList
+      task.save()
+      @tasks.add task

@@ -6,6 +6,7 @@ Tasks = require '../collections/Tasks'
 Task = require '../models/Task'
 TasksView = require './Tasks'
 
+# Takes in both a @model (List) and a collection of Tasks (@tasks)
 module.exports = class ListView extends TemplateView
 
   tagName: 'div'
@@ -13,19 +14,17 @@ module.exports = class ListView extends TemplateView
 
   template: require '../templates/List'
 
-  initialize: =>
-    q = new Parse.Query Task
-    q.equalTo 'parentList', @model
-    q.find success: (results) =>
-      @tasks = new Tasks results
-      @tasks.on 'add remove', @render
-      @render()
+  initialize: (opts) =>
+    super
+    @tasks = opts.tasks
+    @tasks.on 'add remove', @render
 
   render: =>
     super
-    tasksView = new TasksView collection: @tasks or new Tasks
-    @$el.find('.tasks-container').html tasksView.render().el
-    @$el.find('.tasks-container').append new NewTaskView(collection: @collection).render().el
+    if @tasks?
+      tasksView = new TasksView collection: @tasks
+      @$el.find('.tasks-container').html tasksView.render().el
+    @$el.find('.tasks-container').append new NewTaskView(tasks: @tasks, parentList: @model).render().el
     return @
   #   @$el.empty()
   #   @collection.each (task) =>

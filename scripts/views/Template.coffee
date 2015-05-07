@@ -19,6 +19,6 @@ module.exports = class TemplateView extends Parse.View
 
   render: =>
     # Backbone LocalStorage bug - https://github.com/tastejs/todomvc/issues/469
-    return @ if @model?.changed.id?
-    @$el.html @template @model?.toJSON() or @data
+    unless @model?.changed.id?
+      @$el.html @template @model?.toJSON() or @data
     return @

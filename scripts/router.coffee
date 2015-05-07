@@ -4,6 +4,8 @@ TemplateView = require './views/Template'
 TasksView = require './views/Tasks'
 ListView = require './views/List'
 
+Task = require './models/Task'
+
 Tasks = require './collections/Tasks'
 Lists = require './collections/Lists'
 
@@ -23,9 +25,14 @@ module.exports = class Router extends Parse.Router
     lists = new Lists
     lists.fetch success: ->
       lists.each (list) ->
-        listView = new ListView model: list
-        # console.log listView
-        $('#app').append listView.render().el
+        # This is a hack for relations. Instead of List owning a set of Tasks,
+        # we query for the Tasks before render and attach them to the view. 
+        # In a sense, a List is totally unaware of it's tasks.
+        q = new Parse.Query Task
+        q.equalTo 'parentList', list
+        q.find success: (results) =>
+          listView = new ListView model: list, tasks: new Tasks(results)
+          $('#app').append listView.render().el
 
 
   # Helper method for rendering basic templates
