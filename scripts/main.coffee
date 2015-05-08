@@ -1,6 +1,4 @@
-Parse = require('parse').Parse
-$ = window.jQuery
-Parse.$ = $
+Parse = require './framework'
 
 window.Parse = Parse #TODO remove
 
